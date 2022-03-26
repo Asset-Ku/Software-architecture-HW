@@ -1,0 +1,83 @@
+C:\Users\Alfa>docker run --rm -d --name apache -p 80:80 httpd:2.4
+Unable to find image 'httpd:2.4' locally
+2.4: Pulling from library/httpd
+ae13dd578326: Pull complete
+fd997b74d81b: Pull complete
+248a67212d22: Pull complete
+60cf240b9129: Pull complete
+b75bd115573c: Pull complete
+Digest: sha256:5238710afda67227f805b7563455365588afd4b7d9abcddbdfe76b01463c9df3
+Status: Downloaded newer image for httpd:2.4
+0d9f93e8793361dd73db8255613ee8eb5847894798c008475d198bdb4bc67397
+
+C:\Users\Alfa>curl localhost
+<html><body><h1>It works!</h1></body></html>
+
+C:\Users\Alfa\ex4>docker cp index.html apache:/usr/local/apache2/htdocs/
+CreateFile C:\Users\Alfa\ex4\index.html: The system cannot find the file specified.
+
+C:\Users\Alfa\ex4>docker cp index.html apache:/usr/local/apache2/htdocs/
+
+C:\Users\Alfa\ex4>curl localhost
+< html > < body > < h1 > It works in Docker! </ h1 > </ тело > </ html >
+C:\Users\Alfa\ex4>docker stop apache
+apache
+
+C:\Users\Alfa\ex4>docker run --rm -d --name apache -p 80:80 httpd:2.4
+e64f945b3ffaca32358716186505e6ebeeae5297e7f131882400ff06f7c76f7c
+
+C:\Users\Alfa\ex4>curl localhost
+<html><body><h1>It works!</h1></body></html>
+
+C:\Users\Alfa\ex4>docker volume ls
+DRIVER    VOLUME NAME
+
+C:\Users\Alfa\ex4>docker volume create myvolume
+myvolume
+
+C:\Users\Alfa\ex4>docker volume ls
+DRIVER    VOLUME NAME
+local     myvolume
+
+C:\Users\Alfa\ex4>docker volume rm myvolume
+myvolume
+
+C:\Users\Alfa\ex4>docker volume ls
+DRIVER    VOLUME NAME
+
+C:\Users\Alfa\ex4>docker volume create httpd_htdocs
+httpd_htdocs
+
+C:\Users\Alfa\ex4>docker run --rm -d --name apache -p 80:80 -v httpd_htdocs:/usr/local/apache2/htdocs/ httpd:2.4
+docker: Error response from daemon: Conflict. The container name "/apache" is already in use by container "e64f945b3ffaca32358716186505e6ebeeae5297e7f131882400ff06f7c76f7c". You have to remove (or rename) that container to be able to reuse that name.
+See 'docker run --help'.
+
+C:\Users\Alfa\ex4>docker ps
+CONTAINER ID   IMAGE       COMMAND              CREATED         STATUS         PORTS                NAMES
+e64f945b3ffa   httpd:2.4   "httpd-foreground"   2 minutes ago   Up 2 minutes   0.0.0.0:80->80/tcp   apache
+
+C:\Users\Alfa\ex4>docker stop e64
+e64
+
+C:\Users\Alfa\ex4>docker run --rm -d --name apache -p 80:80 -v httpd_htdocs:/usr/local/apache2/htdocs/ httpd:2.4
+9825bbed83e2a2915b21b0e903ffb238403b51dfb604c66cd2160820bdb9e195
+
+C:\Users\Alfa\ex4>docker cp index.html apache:/usr/local/apache2/htdocs/
+
+C:\Users\Alfa\ex4>curl localhost
+< html > < body > < h1 > It works in Docker! </ h1 > </ тело > </ html >
+C:\Users\Alfa\ex4>docker stop apache
+apache
+
+C:\Users\Alfa\ex4>docker run --rm -d --name apache -p 80:80 -v httpd_htdocs:/usr/local/apache2/htdocs/ httpd:2.4
+799331652eefbbfb6f807d39a875f78f0ff14baddeb33ddf66faaa3a543f01b3
+
+C:\Users\Alfa\ex4>curl localhost
+< html > < body > < h1 > It works in Docker! </ h1 > </ тело > </ html >
+C:\Users\Alfa\ex4>docker stop apache
+apache
+
+C:\Users\Alfa\ex4>docker volume rm httpd_htdocs
+httpd_htdocs
+
+C:\Users\Alfa\ex4>

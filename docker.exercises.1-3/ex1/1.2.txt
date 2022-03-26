@@ -1,0 +1,42 @@
+C:\Users\Alfa>docker ps -a
+CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS     NAMES
+6900dfc722e1   nginx     "/docker-entrypoint.…"   21 minutes ago   Up 21 minutes   80/tcp    nifty_cannon
+
+C:\Users\Alfa>docker images
+REPOSITORY               TAG       IMAGE ID       CREATED        SIZE
+nginx                    latest    f2f70adc5d89   4 days ago     142MB
+httpd                    2.4       b9bd7e513e0f   4 days ago     144MB
+docker/getting-started   latest    bd9a9f733898   5 weeks ago    28.8MB
+hello-world              latest    feb5d9fea6a5   5 months ago   13.3kB
+ubuntu                   16.04     b6f507652425   6 months ago   135MB
+
+C:\Users\Alfa>docker stop 6900
+6900
+
+C:\Users\Alfa>docker rm 6900
+6900
+
+C:\Users\Alfa>docker ps -a
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+
+C:\Users\Alfa>docker images
+REPOSITORY               TAG       IMAGE ID       CREATED        SIZE
+nginx                    latest    f2f70adc5d89   4 days ago     142MB
+hello-world              latest    feb5d9fea6a5   5 months ago   13.3kB
+
+C:\Users\Alfa>docker rmi f2f7 feb5
+Untagged: nginx:latest
+Untagged: nginx@sha256:e1211ac17b29b585ed1aee166a17fad63d344bc973bc63849d74c6452d549b3e
+Deleted: sha256:f2f70adc5d89aa922836e9cc6801980a12a7ff9012446cc6edf52ef8798a67bd
+Deleted: sha256:67ebf5d071658c842ea9aa53588dea5bfb98635a2133151c0699c3eb487c114d
+Deleted: sha256:1bbfd0f49839d5fd15e209e5b7a44bfa4347cfcdf7a288a8f1d39d5a56664418
+Deleted: sha256:b689a5ad0c39e61cbd4532000b49f545169e27578b49492b5c3b368fe07d8337
+Deleted: sha256:16343f21b7f9c1bcb2930c8b6b97b3f8df9136e58492421f0fda966c834e4746
+Deleted: sha256:dfae993a20b32b42b6187b7e223c7f33cc19b2b092fe860a4c29f6dce551e91d
+Untagged: hello-world:latest
+Untagged: hello-world@sha256:6d60b42fdd5a0aa8a718b5f2eab139868bb4fa9a03c9fe1a59ed4946317c4318
+Deleted: sha256:feb5d9fea6a5e9606aa995e879d862b825965ba48de054caab5ef356dc6b3412
+Deleted: sha256:e07ee1baac5fae6a26f30cabfe54a36d3402f96afda318fe0a96cec4ca393359
+
+C:\Users\Alfa>docker images
+REPOSITORY   TAG       IMAGE ID   CREATED   SIZE

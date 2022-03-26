@@ -1,0 +1,124 @@
+C:\Users\Alfa>docker images
+REPOSITORY   TAG       IMAGE ID   CREATED   SIZE
+
+C:\Users\Alfa>docker pull ubuntu:16.04
+16.04: Pulling from library/ubuntu
+58690f9b18fc: Pull complete
+b51569e7c507: Pull complete
+da8ef40b9eca: Pull complete
+fb15d46c38dc: Pull complete
+Digest: sha256:0f71fa8d4d2d4292c3c617fda2b36f6dabe5c8b6e34c3dc5b0d17d4e704bd39c
+Status: Downloaded newer image for ubuntu:16.04
+docker.io/library/ubuntu:16.04
+
+C:\Users\Alfa>docker pull ubuntu:16.10
+16.10: Pulling from library/ubuntu
+dca7be20e546: Pull complete
+40bca54f5968: Pull complete
+61464f23390e: Pull complete
+d99f0bcd5dc8: Pull complete
+120db6f90955: Pull complete
+Digest: sha256:8dc9652808dc091400d7d5983949043a9f9c7132b15c14814275d25f94bca18a
+Status: Downloaded newer image for ubuntu:16.10
+docker.io/library/ubuntu:16.10
+
+C:\Users\Alfa>docker images
+REPOSITORY   TAG       IMAGE ID       CREATED        SIZE
+ubuntu       16.04     b6f507652425   6 months ago   135MB
+ubuntu       16.10     7d3f705d307c   4 years ago    107MB
+
+C:\Users\Alfa>docker rmi 7d3
+Untagged: ubuntu:16.10
+Untagged: ubuntu@sha256:8dc9652808dc091400d7d5983949043a9f9c7132b15c14814275d25f94bca18a
+Deleted: sha256:7d3f705d307c7c225398e04d4c4f8512f64eb8a65959a1fb4514dfde18a047e7
+Deleted: sha256:d9db289b9342d9617596cd6ee3bba988629e24d9afa5db4e4b0e4e491c65007d
+Deleted: sha256:a87725e8597b97f2399bc3aa50b0e2eec903b8ce19055668d3befb012918205c
+Deleted: sha256:38cf10a2801529348366953e9b933d3524360dedc91d3e4d5d7f941da0c973c9
+Deleted: sha256:61172966249d43026dbd017eec3a9575e37bddf8a269a9f09ecb559d7bfe7fef
+Deleted: sha256:57145c01eb80040fdd0a24cde20af4788605b49593188d4f7efab099af89a08e
+
+C:\Users\Alfa>docker images
+REPOSITORY   TAG       IMAGE ID       CREATED        SIZE
+ubuntu       16.04     b6f507652425   6 months ago   135MB
+
+C:\Users\Alfa>docker run ubuntu:16.04 /bin/echo 'Hello world!'
+'Hello world!'
+
+C:\Users\Alfa>docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+
+C:\Users\Alfa>docker ps -a
+CONTAINER ID   IMAGE          COMMAND                  CREATED          STATUS                      PORTS     NAMES
+a5807d98fa5e   ubuntu:16.04   "/bin/echo 'Hello wo…"   21 seconds ago   Exited (0) 21 seconds ago             keen_black
+
+C:\Users\Alfa>docker run ubuntu:16.04 /bin/bash
+
+C:\Users\Alfa>docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+
+C:\Users\Alfa>docker ps -a
+CONTAINER ID   IMAGE          COMMAND                  CREATED          STATUS                      PORTS     NAMES
+4ae4729718eb   ubuntu:16.04   "/bin/bash"              28 seconds ago   Exited (0) 27 seconds ago             hungry_jemison
+a5807d98fa5e   ubuntu:16.04   "/bin/echo 'Hello wo…"   2 minutes ago    Exited (0) 2 minutes ago              keen_black
+
+C:\Users\Alfa>docker run -it ubuntu:16.04 /bin/bash
+root@1827dfd39a16:/# pwd
+/
+root@1827dfd39a16:/# ls
+bin  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+root@1827dfd39a16:/# exit
+exit
+
+C:\Users\Alfa>docker run -d ubuntu:16.04 /bin/sleep 3600
+9790821323b30792690d6801225dc3c76f7f95ee62e418e03afbaa3f65c51b28
+
+C:\Users\Alfa>docker ps -a
+CONTAINER ID   IMAGE          COMMAND                  CREATED              STATUS                      PORTS     NAMES
+9790821323b3   ubuntu:16.04   "/bin/sleep 3600"        13 seconds ago       Up 12 seconds                         xenodochial_kalam
+1827dfd39a16   ubuntu:16.04   "/bin/bash"              About a minute ago   Exited (0) 58 seconds ago             awesome_hodgkin
+4ae4729718eb   ubuntu:16.04   "/bin/bash"              2 minutes ago        Exited (0) 2 minutes ago              hungry_jemison
+a5807d98fa5e   ubuntu:16.04   "/bin/echo 'Hello wo…"   4 minutes ago        Exited (0) 4 minutes ago              keen_black
+
+C:\Users\Alfa>docker ps
+CONTAINER ID   IMAGE          COMMAND             CREATED          STATUS          PORTS     NAMES
+9790821323b3   ubuntu:16.04   "/bin/sleep 3600"   40 seconds ago   Up 38 seconds             xenodochial_kalam
+
+C:\Users\Alfa>docker exec -it 979 /bin/bash
+root@9790821323b3:/# ps aux
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root         1  0.0  0.0   4376   748 ?        Ss   08:04   0:00 /bin/sleep 3600
+root         8  0.1  0.0  18240  3296 pts/0    Ss   08:06   0:00 /bin/bash
+root        18  0.0  0.0  34424  2808 pts/0    R+   08:06   0:00 ps aux
+root@9790821323b3:/# exit
+exit
+
+C:\Users\Alfa>docker ps
+CONTAINER ID   IMAGE          COMMAND             CREATED         STATUS         PORTS     NAMES
+9790821323b3   ubuntu:16.04   "/bin/sleep 3600"   2 minutes ago   Up 2 minutes             xenodochial_kalam
+
+C:\Users\Alfa>docker ps -a
+CONTAINER ID   IMAGE          COMMAND                  CREATED         STATUS                     PORTS     NAMES
+9790821323b3   ubuntu:16.04   "/bin/sleep 3600"        2 minutes ago   Up 2 minutes                         xenodochial_kalam
+1827dfd39a16   ubuntu:16.04   "/bin/bash"              3 minutes ago   Exited (0) 3 minutes ago             awesome_hodgkin
+4ae4729718eb   ubuntu:16.04   "/bin/bash"              4 minutes ago   Exited (0) 4 minutes ago             hungry_jemison
+a5807d98fa5e   ubuntu:16.04   "/bin/echo 'Hello wo…"   6 minutes ago   Exited (0) 6 minutes ago             keen_black
+
+C:\Users\Alfa>docker stop 979 182
+979
+182
+
+C:\Users\Alfa>docker stop 4ae a58
+4ae
+a58
+
+C:\Users\Alfa>docker rm 979 182 4ae a58
+979
+182
+4ae
+a58
+
+C:\Users\Alfa>docker run --rm ubuntu:16.04 /bin/echo 'Hello and goodbye!'
+'Hello and goodbye!'
+
+
+C:\Users\Alfa>

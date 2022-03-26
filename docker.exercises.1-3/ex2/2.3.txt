@@ -1,0 +1,17 @@
+C:\Users\Alfa\ex2.3>type docker-compose.yml
+version: '3.5'
+
+services:
+  backend:
+    image: backend
+    build: ./back
+    ports:
+     - "8000:8000"
+    container_name: backend
+  frontend:
+    image: frontend
+    build: ./front
+    ports:
+     - "5000:5000"
+    container_name: frontend
+C:\Users\Alfa\ex2.3>

@@ -1,0 +1,9 @@
+C:\Users\Alfa\ex2.2>type docker-compose.yml
+version: '3.5'
+
+services:
+  portit:
+    image: devopsdockeruh/ports_exercise
+    ports:
+      - 8000:80
+C:\Users\Alfa\ex2.2>

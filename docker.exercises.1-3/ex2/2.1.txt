@@ -1,0 +1,11 @@
+C:\Users\Alfa\ex2.1>type docker-compose.yml
+version: '3.5'
+
+services:
+  youtube-dl-ubuntu:
+    image: devopsdockeruh/first_volume_exercise
+    build: .
+    volumes:
+      - ./logs.txt:/usr/app/logs.txt
+    container_name: ex2.1
+C:\Users\Alfa\ex2.1>

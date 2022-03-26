@@ -1,0 +1,33 @@
+C:\Users\Alfa>docker run -it ubuntu:16.04 /bin/bash
+root@a2813fc3357e:/# ls
+bin  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+
+
+C:\Users\Alfa\ex3>docker build -t "ex3" .
+[+] Building 63.6s (6/6) FINISHED
+ => [internal] load build definition from Dockerfile                                                                                                          0.0s
+ => => transferring dockerfile: 355B                                                                                                                          0.0s
+ => [internal] load .dockerignore                                                                                                                             0.0s
+ => => transferring context: 2B                                                                                                                               0.0s
+ => [internal] load metadata for docker.io/library/ubuntu:16.04                                                                                               0.0s
+ => CACHED [1/2] FROM docker.io/library/ubuntu:16.04                                                                                                          0.0s
+ => [2/2] RUN apt-get update     && apt-get install -y iputils-ping     && apt-get clean     && cd /var/lib/apt/lists && rm -fr *Release* *Sources* *Packag  63.4s
+ => exporting to image                                                                                                                                        0.1s
+ => => exporting layers                                                                                                                                       0.1s
+ => => writing image sha256:94701104711596912ae33637e5c739e20eb4ca2d60e7e6f348d8fb93b5749ae9                                                                  0.0s
+ => => naming to docker.io/library/ex3                                                                                                                        0.0s
+
+Use 'docker scan' to run Snyk tests against images to find vulnerabilities and learn how to fix them
+
+C:\Users\Alfa\ex3>docker images
+REPOSITORY   TAG       IMAGE ID       CREATED          SIZE
+ex3          latest    947011047115   48 seconds ago   139MB
+asset/ping   latest    eceff66c48d9   7 hours ago      170MB
+ubuntu       16.04     b6f507652425   6 months ago     135MB
+
+C:\Users\Alfa\ex3>docker run -it ex3
+PING kbtu.kz (188.127.36.9) 56(84) bytes of data.
+64 bytes from 188.127.36.9: icmp_seq=1 ttl=37 time=13.6 ms
+64 bytes from 188.127.36.9: icmp_seq=2 ttl=37 time=34.3 ms
+64 bytes from 188.127.36.9: icmp_seq=3 ttl=37 time=19.3 ms
+64 bytes from 188.127.36.9: icmp_seq=4 ttl=37 time=11.9 ms

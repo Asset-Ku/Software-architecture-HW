@@ -1,0 +1,20 @@
+C:\Users\Alfa\ex3.1>docker history 3d2b
+IMAGE          CREATED       CREATED BY                                      SIZE      COMMENT
+3d2b622b1849   2 years ago   /bin/sh -c #(nop)  ENTRYPOINT ["/usr/app/sta…   0B
+<missing>      2 years ago   /bin/sh -c chmod +x /usr/app/start.sh           36B
+<missing>      2 years ago   /bin/sh -c #(nop) COPY dir:11da45c8dd071e163…   24.6kB
+<missing>      2 years ago   /bin/sh -c #(nop) WORKDIR /usr/app              0B
+<missing>      2 years ago   /bin/sh -c #(nop)  CMD ["node"]                 0B
+<missing>      2 years ago   /bin/sh -c #(nop)  ENTRYPOINT ["docker-entry…   0B
+<missing>      2 years ago   /bin/sh -c #(nop) COPY file:238737301d473041…   116B
+<missing>      2 years ago   /bin/sh -c set -ex   && for key in     6A010…   5.48MB
+<missing>      2 years ago   /bin/sh -c #(nop)  ENV YARN_VERSION=1.19.0      0B
+<missing>      2 years ago   /bin/sh -c ARCH= && dpkgArch="$(dpkg --print…   67.1MB
+<missing>      2 years ago   /bin/sh -c #(nop)  ENV NODE_VERSION=12.11.1     0B
+<missing>      2 years ago   /bin/sh -c groupadd --gid 1000 node   && use…   333kB
+<missing>      2 years ago   /bin/sh -c set -ex;  apt-get update;  apt-ge…   562MB
+<missing>      2 years ago   /bin/sh -c apt-get update && apt-get install…   142MB
+<missing>      2 years ago   /bin/sh -c set -ex;  if ! command -v gpg > /…   7.81MB
+<missing>      2 years ago   /bin/sh -c apt-get update && apt-get install…   23.2MB
+<missing>      2 years ago   /bin/sh -c #(nop)  CMD ["bash"]                 0B
+<missing>      2 years ago   /bin/sh -c #(nop) ADD file:9788b61de35351489…   101MB

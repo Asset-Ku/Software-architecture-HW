@@ -1,0 +1,20 @@
+C:\Users\Alfa>docker run devopsdockeruh/first_volume_exercise
+Unable to find image 'devopsdockeruh/first_volume_exercise:latest' locally
+latest: Pulling from devopsdockeruh/first_volume_exercise
+1c6172af85ee: Already exists
+b194b0e3c928: Already exists
+1f5ec00f35d5: Already exists
+93b1353672b6: Already exists
+3d7f38db3cca: Already exists
+21e102f9fe89: Already exists
+d851ffed797c: Already exists
+a45031e28c68: Already exists
+ca3c1414856f: Already exists
+f092ecebb4a6: Pull complete
+b51567d0861f: Pull complete
+Digest: sha256:38dd790d251fa970e338546f1cc698214dbdbfb13a0b6b057177c20f960f31b2
+Status: Downloaded newer image for devopsdockeruh/first_volume_exercise:latest
+Wrote to file /usr/app/logs.txt
+Wrote to file /usr/app/logs.txt
+Wrote to file /usr/app/logs.txt
+Closing file

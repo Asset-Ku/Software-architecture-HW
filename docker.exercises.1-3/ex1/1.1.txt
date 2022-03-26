@@ -1,0 +1,53 @@
+C:\Users\Alfa>docker ps -a
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+
+C:\Users\Alfa>docker run -d nginx
+Unable to find image 'nginx:latest' locally
+latest: Pulling from library/nginx
+ae13dd578326: Already exists
+6c0ee9353e13: Pull complete
+dca7733b187e: Pull complete
+352e5a6cac26: Pull complete
+9eaf108767c7: Pull complete
+be0c016df0be: Pull complete
+Digest: sha256:e1211ac17b29b585ed1aee166a17fad63d344bc973bc63849d74c6452d549b3e
+Status: Downloaded newer image for nginx:latest
+57674975745ee5a1542f5070bf4482cf9c7c11d0808d511feb5de28d60210a8a
+
+C:\Users\Alfa>docker ps -a
+CONTAINER ID   IMAGE         COMMAND                  CREATED              STATUS                     PORTS     NAMES
+57674975745e   nginx         "/docker-entrypoint.…"   About a minute ago   Up About a minute          80/tcp    blissful_wu
+
+C:\Users\Alfa>docker run -d nginx
+b3e48a548c459cd0febe05abe3a71c25add335d8374d1e5792d635874bb1f1b5
+
+C:\Users\Alfa>docker run -d nginx
+6900dfc722e1d2377ceeca6d43627040fd8fb89de562e09e65562f335ae40e96
+
+C:\Users\Alfa>docker ps -a
+CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS     NAMES
+6900dfc722e1   nginx     "/docker-entrypoint.…"   7 seconds ago    Up 7 seconds    80/tcp    nifty_cannon
+b3e48a548c45   nginx     "/docker-entrypoint.…"   11 seconds ago   Up 11 seconds   80/tcp    elegant_cartwright
+57674975745e   nginx     "/docker-entrypoint.…"   2 minutes ago    Up 2 minutes    80/tcp    blissful_wu
+
+C:\Users\Alfa>docker stop 5767 b3e4
+5767
+b3e4
+
+C:\Users\Alfa>docker ps -a
+CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS                      PORTS     NAMES
+6900dfc722e1   nginx     "/docker-entrypoint.…"   12 minutes ago   Up 12 minutes               80/tcp    nifty_cannon
+b3e48a548c45   nginx     "/docker-entrypoint.…"   12 minutes ago   Exited (0) 14 seconds ago             elegant_cartwright
+57674975745e   nginx     "/docker-entrypoint.…"   15 minutes ago   Exited (0) 48 seconds ago             blissful_wu
+
+C:\Users\Alfa>docker rm 5767 b3e4
+5767
+b3e4
+
+
+C:\Users\Alfa>docker ps -a
+CONTAINER ID   IMAGE     COMMAND                  CREATED          STATUS          PORTS     NAMES
+6900dfc722e1   nginx     "/docker-entrypoint.…"   12 minutes ago   Up 12 minutes   80/tcp    nifty_cannon
+
+C:\Users\Alfa>
+

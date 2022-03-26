@@ -1,0 +1,75 @@
+C:\Users\Alfa>docker login
+Login with your Docker ID to push and pull images from Docker Hub. If you don't have a Docker ID, head over to https://hub.docker.com to create one.
+Username: assetmku
+Password:
+Login Succeeded
+
+Logging in with your password grants your terminal complete access to your account.
+For better security, log in with a limited-privilege personal access token. Learn more at https://docs.docker.com/go/access-tokens/
+
+C:\Users\Alfa>docker search kafka
+NAME                                      DESCRIPTION                                     STARS     OFFICIAL   AUTOMATED
+bitnami/kafka                             Apache Kafka is a distributed streaming plat…   422                  [OK]
+kafkamanager/kafka-manager                Docker image for Kafka manager                  146
+bitnami/kafka-exporter                                                                    5
+ibmcom/kafka                              Docker Image for IBM Cloud Private-CE (Commu…   5
+bitnami/kafka-trigger-controller          Source for this controller is in the kubeles…   3
+kafkaesqueio/pulsar-all                   Apache Pulsar with all optional packages inc…   3
+ibmcom/eventstreams-kafkaconnect          Docker image for Kafka Connect with the IBM …   2
+rancher/kafka                                                                             2
+ibmcom/kafka-java-console-sample          Docker image for the IBM Event Streams Java …   1
+ibmcom/kafka-retry                        Kafka Retry provides a generic, delayed retr…   1
+ibmcom/kafka-nodejs-console-sample        Docker image for the IBM Event Streams Node.…   1
+ibmcom/kafka-java-liberty-sample          Docker image for the IBM Event Streams Java …   1
+ibmcom/kafka-sender                                                                       1
+ibmcom/kafka-python-console-sample        Docker image for the IBM Event Streams Pytho…   1
+ibmcom/kafka-receiver                                                                     1
+pachyderm/kafka-example-consumer                                                          0
+pachyderm/kafka_spout                                                                     0
+ibmcom/eventstreams-kafkamirrormaker      Docker image for Kafka Mirror Maker             0
+ibmcom/kafka-java-console-schema-sample                                                   0
+ibmcom/kafka-amd64                                                                        0
+ibmcom/kafka-golang-console-sample                                                        0
+ibmcom/kafka-ppc64le                      An open-source stream processing platform       0
+kafkasocks/mm-prod                                                                        0
+kafkaesqueio/pulsar                       Apache Pulsar                                   0
+pachyderm/kafka-example-producer                                                          0
+
+C:\Users\Alfa>docker images
+REPOSITORY   TAG       IMAGE ID       CREATED          SIZE
+ex3          latest    947011047115   12 minutes ago   139MB
+<none>       <none>    bce7b41a05cd   20 minutes ago   170MB
+asset/ping   latest    eceff66c48d9   7 hours ago      170MB
+ubuntu       16.04     b6f507652425   6 months ago     135MB
+
+C:\Users\Alfa>docker tag ex3 assetmku/ex4
+
+C:\Users\Alfa>docker images
+REPOSITORY     TAG       IMAGE ID       CREATED          SIZE
+assetmku/ex4   latest    947011047115   14 minutes ago   139MB
+ex3            latest    947011047115   14 minutes ago   139MB
+<none>         <none>    bce7b41a05cd   22 minutes ago   170MB
+asset/ping     latest    eceff66c48d9   7 hours ago      170MB
+ubuntu         16.04     b6f507652425   6 months ago     135MB
+
+C:\Users\Alfa>docker rmi ex3
+Untagged: ex3:latest
+
+C:\Users\Alfa>docker images
+REPOSITORY     TAG       IMAGE ID       CREATED          SIZE
+assetmku/ex4   latest    947011047115   15 minutes ago   139MB
+<none>         <none>    bce7b41a05cd   22 minutes ago   170MB
+asset/ping     latest    eceff66c48d9   7 hours ago      170MB
+ubuntu         16.04     b6f507652425   6 months ago     135MB
+
+C:\Users\Alfa>docker push assetmku/ex4
+Using default tag: latest
+The push refers to repository [docker.io/assetmku/ex4]
+9a2d9c813924: Pushed
+1251204ef8fc: Mounted from library/ubuntu
+47ef83afae74: Mounted from library/ubuntu
+df54c846128d: Mounted from library/ubuntu
+be96a3f634de: Mounted from library/ubuntu
+latest: digest: sha256:7ee2a651c77573456d1fb6ec5dbb7ebb8b624fd123a1a5ffde958ba63a866fae size: 1361
+
+C:\Users\Alfa>

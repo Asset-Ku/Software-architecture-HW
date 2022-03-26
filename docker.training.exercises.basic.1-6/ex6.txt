@@ -1,0 +1,216 @@
+C:\Users\Alfa>docker network ls
+NETWORK ID     NAME      DRIVER    SCOPE
+e1b9d11dd638   bridge    bridge    local
+69741fb27c6b   host      host      local
+b5419644bf9c   none      null      local
+
+C:\Users\Alfa>docker network inspect bridge
+[
+    {
+        "Name": "bridge",
+        "Id": "e1b9d11dd638bad73b6503986b503ff1fdff7137725ded648d4a832ca3f3d12c",
+        "Created": "2022-03-21T17:14:59.9401086Z",
+        "Scope": "local",
+        "Driver": "bridge",
+        "EnableIPv6": false,
+        "IPAM": {
+            "Driver": "default",
+            "Options": null,
+            "Config": [
+                {
+                    "Subnet": "172.17.0.0/16",
+                    "Gateway": "172.17.0.1"
+                }
+            ]
+        },
+        "Internal": false,
+        "Attachable": false,
+        "Ingress": false,
+        "ConfigFrom": {
+            "Network": ""
+        },
+        "ConfigOnly": false,
+        "Containers": {},
+        "Options": {
+            "com.docker.network.bridge.default_bridge": "true",
+            "com.docker.network.bridge.enable_icc": "true",
+            "com.docker.network.bridge.enable_ip_masquerade": "true",
+            "com.docker.network.bridge.host_binding_ipv4": "0.0.0.0",
+            "com.docker.network.bridge.name": "docker0",
+            "com.docker.network.driver.mtu": "1500"
+        },
+        "Labels": {}
+    }
+]
+
+C:\Users\Alfa>docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+
+C:\Users\Alfa>docker images
+REPOSITORY     TAG       IMAGE ID       CREATED          SIZE
+assetmku/ex4   latest    947011047115   37 minutes ago   139MB
+<none>         <none>    bce7b41a05cd   44 minutes ago   170MB
+asset/ping     latest    eceff66c48d9   8 hours ago      170MB
+httpd          2.4       b9bd7e513e0f   9 days ago       144MB
+ubuntu         16.04     b6f507652425   6 months ago     135MB
+
+C:\Users\Alfa>docker run --rm -d --name dummy assetmku/ex4
+3a5ae118fd9ea3411ea343325638cd2bebfbd6699c4804885467177b9c9c4148
+
+C:\Users\Alfa>docker network inspect bridge
+[
+    {
+        "Name": "bridge",
+        "Id": "e1b9d11dd638bad73b6503986b503ff1fdff7137725ded648d4a832ca3f3d12c",
+        "Created": "2022-03-21T17:14:59.9401086Z",
+        "Scope": "local",
+        "Driver": "bridge",
+        "EnableIPv6": false,
+        "IPAM": {
+            "Driver": "default",
+            "Options": null,
+            "Config": [
+                {
+                    "Subnet": "172.17.0.0/16",
+                    "Gateway": "172.17.0.1"
+                }
+            ]
+        },
+        "Internal": false,
+        "Attachable": false,
+        "Ingress": false,
+        "ConfigFrom": {
+            "Network": ""
+        },
+        "ConfigOnly": false,
+        "Containers": {
+            "3a5ae118fd9ea3411ea343325638cd2bebfbd6699c4804885467177b9c9c4148": {
+                "Name": "dummy",
+                "EndpointID": "4dfcb7d321381ed5c9dbf1007f6b8983e8f414c82d291b5cdde07ca88cd46970",
+                "MacAddress": "02:42:ac:11:00:02",
+                "IPv4Address": "172.17.0.2/16",
+                "IPv6Address": ""
+            }
+        },
+        "Options": {
+            "com.docker.network.bridge.default_bridge": "true",
+            "com.docker.network.bridge.enable_icc": "true",
+            "com.docker.network.bridge.enable_ip_masquerade": "true",
+            "com.docker.network.bridge.host_binding_ipv4": "0.0.0.0",
+            "com.docker.network.bridge.name": "docker0",
+            "com.docker.network.driver.mtu": "1500"
+        },
+        "Labels": {}
+    }
+]
+
+C:\Users\Alfa>docker run --rm -d -e PING_TARGET=172.17.0.2 --name pinger assetmku/ex4
+0fd195d4da4b71a11381fcc5136c4fdc275d630347b8ade2be0ebcc3f05bc795
+
+C:\Users\Alfa>docker ps
+CONTAINER ID   IMAGE          COMMAND                  CREATED              STATUS              PORTS     NAMES
+0fd195d4da4b   assetmku/ex4   "sh -c 'ping $PING_T…"   7 seconds ago        Up 6 seconds                  pinger
+3a5ae118fd9e   assetmku/ex4   "sh -c 'ping $PING_T…"   About a minute ago   Up About a minute             dummy
+
+C:\Users\Alfa>docker run --rm -d -e PING_TARGET=dummy --name pinger assetmku/ex4
+docker: Error response from daemon: Conflict. The container name "/pinger" is already in use by container "0fd195d4da4b71a11381fcc5136c4fdc275d630347b8ade2be0ebcc3f05bc795". You have to remove (or rename) that container to be able to reuse that name.
+See 'docker run --help'.
+
+C:\Users\Alfa>docker stop 0fd 3a5
+0fd
+3a5
+
+C:\Users\Alfa>docker run --rm -d -e PING_TARGET=dummy --name pinger assetmku/ex4
+67d89b07b9532b1ca27a3657f55884abdadfdb4b8370918a46154f376faea576
+
+C:\Users\Alfa>docker network create skynet
+8e63ed28bdef35abe4f1375e741ea16d12d4e3346bc6e978b3d34c4809590023
+
+C:\Users\Alfa>docker network ls
+NETWORK ID     NAME      DRIVER    SCOPE
+e1b9d11dd638   bridge    bridge    local
+69741fb27c6b   host      host      local
+b5419644bf9c   none      null      local
+8e63ed28bdef   skynet    bridge    local
+
+C:\Users\Alfa>docker network inspect skynet
+[
+    {
+        "Name": "skynet",
+        "Id": "8e63ed28bdef35abe4f1375e741ea16d12d4e3346bc6e978b3d34c4809590023",
+        "Created": "2022-03-26T16:12:35.6267757Z",
+        "Scope": "local",
+        "Driver": "bridge",
+        "EnableIPv6": false,
+        "IPAM": {
+            "Driver": "default",
+            "Options": {},
+            "Config": [
+                {
+                    "Subnet": "172.18.0.0/16",
+                    "Gateway": "172.18.0.1"
+                }
+            ]
+        },
+        "Internal": false,
+        "Attachable": false,
+        "Ingress": false,
+        "ConfigFrom": {
+            "Network": ""
+        },
+        "ConfigOnly": false,
+        "Containers": {},
+        "Options": {},
+        "Labels": {}
+    }
+]
+
+C:\Users\Alfa>docker run --rm -d --network skynet --name dummy delner/ping:1.0
+Unable to find image 'delner/ping:1.0' locally
+docker: Error response from daemon: pull access denied for delner/ping, repository does not exist or may require 'docker login': denied: requested access to the resource is denied.
+See 'docker run --help'.
+
+C:\Users\Alfa>docker run --rm -d --network skynet --name dummy assetmku/ex4
+5b3f54338228a5d7e7722b0c63fb52c44e927d48ab551dcec143009d69ad8ea3
+
+C:\Users\Alfa>docker run --rm -d --network skynet -e PING_TARGET=dummy --name pinger assetmku/ex4
+f8a472503ced9023e2bb3916173d8cab2a3ad47c274fe76f75cd9769769c95a9
+
+C:\Users\Alfa>docker logs pinger
+PING dummy (172.18.0.2) 56(84) bytes of data.
+64 bytes from dummy.skynet (172.18.0.2): icmp_seq=1 ttl=64 time=0.052 ms
+64 bytes from dummy.skynet (172.18.0.2): icmp_seq=2 ttl=64 time=0.150 ms
+64 bytes from dummy.skynet (172.18.0.2): icmp_seq=3 ttl=64 time=0.145 ms
+64 bytes from dummy.skynet (172.18.0.2): icmp_seq=4 ttl=64 time=0.148 ms
+64 bytes from dummy.skynet (172.18.0.2): icmp_seq=5 ttl=64 time=0.143 ms
+64 bytes from dummy.skynet (172.18.0.2): icmp_seq=6 ttl=64 time=0.060 ms
+64 bytes from dummy.skynet (172.18.0.2): icmp_seq=7 ttl=64 time=0.144 ms
+64 bytes from dummy.skynet (172.18.0.2): icmp_seq=8 ttl=64 time=0.102 ms
+64 bytes from dummy.skynet (172.18.0.2): icmp_seq=9 ttl=64 time=0.143 ms
+64 bytes from dummy.skynet (172.18.0.2): icmp_seq=10 ttl=64 time=0.127 ms
+64 bytes from dummy.skynet (172.18.0.2): icmp_seq=11 ttl=64 time=0.143 ms
+64 bytes from dummy.skynet (172.18.0.2): icmp_seq=12 ttl=64 time=0.176 ms
+
+C:\Users\Alfa>docker run --rm -d --name widgetdb --network skynet -p 5432 postgres
+Unable to find image 'postgres:latest' locally
+latest: Pulling from library/postgres
+ae13dd578326: Already exists
+723e40c35aaf: Pull complete
+bf97ae6a09b4: Pull complete
+2c965b3c8cbd: Pull complete
+c3cefa46a015: Pull complete
+64a7315fc25c: Pull complete
+b9846b279f7d: Pull complete
+ed988fb8e7d9: Pull complete
+ed4bb4fd8bb5: Pull complete
+ead27f1733c8: Pull complete
+7d493bacd383: Pull complete
+0920535e8417: Pull complete
+db76d5bdbf2c: Pull complete
+Digest: sha256:14a621708fddaf5620fb3dea3e313e8afc3615b6fe0b824ff929692823952144
+Status: Downloaded newer image for postgres:latest
+45fd2ff2a5bc478d782c63c6f6900d602790af5a8379f7a9d77ef1d40d43e0d6
+
+C:\Users\Alfa>docker run --rm -d --name gadgetdb --network skynet -p 5432 postgres
+2052bc4e9d1d3426b9623898b28396f6a8ac8435135ac5ebda27447ec902c31f
+
