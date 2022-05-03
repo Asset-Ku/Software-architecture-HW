@@ -1,0 +1,173 @@
+C:\Users\Alfa>docker run -d dockersamples/static-site
+Unable to find image 'dockersamples/static-site:latest' locally
+latest: Pulling from dockersamples/static-site
+fdd5d7827f33: Pull complete
+a3ed95caeb02: Pull complete
+716f7a5f3082: Pull complete
+7b10f03a0309: Pull complete
+aff3ab7e9c39: Pull complete
+Digest: sha256:daa686c61d7d239b7977e72157997489db49f316b9b9af3909d9f10fd28b2dec
+Status: Downloaded newer image for dockersamples/static-site:latest
+694b0c8095517d0af14f2efef3a65c6e22c3b7f4e5b17f2c6e25615a15c535ff
+
+C:\Users\Alfa>docker ps
+CONTAINER ID   IMAGE                       COMMAND                  CREATED          STATUS          PORTS             NAMES
+694b0c809551   dockersamples/static-site   "/bin/sh -c 'cd /usr…"   15 seconds ago   Up 15 seconds   80/tcp, 443/tcp   determined_heisenberg
+
+C:\Users\Alfa>docker run hello-world
+
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+    (amd64)
+ 3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
+
+To try something more ambitious, you can run an Ubuntu container with:
+ $ docker run -it ubuntu bash
+
+Share images, automate workflows, and more with a free Docker ID:
+ https://hub.docker.com/
+
+For more examples and ideas, visit:
+ https://docs.docker.com/get-started/
+
+
+C:\Users\Alfa>docker ps
+CONTAINER ID   IMAGE                       COMMAND                  CREATED          STATUS          PORTS             NAMES
+694b0c809551   dockersamples/static-site   "/bin/sh -c 'cd /usr…"   51 seconds ago   Up 50 seconds   80/tcp, 443/tcp   determined_heisenberg
+
+C:\Users\Alfa>docker stop 694
+694
+
+C:\Users\Alfa>docker rm 694
+694
+
+C:\Users\Alfa>docker run --name static-site -e AUTHOR="Asset Makeyev" -d -P dockersamples/static-site
+ad7dff4de97a17af5731754a9190e7b38fde25ccb0d17ea8d0388af6ca7f59bf
+
+C:\Users\Alfa>docker ps
+CONTAINER ID   IMAGE                       COMMAND                  CREATED          STATUS          PORTS                                           NAMES
+ad7dff4de97a   dockersamples/static-site   "/bin/sh -c 'cd /usr…"   24 seconds ago   Up 23 seconds   0.0.0.0:49154->80/tcp, 0.0.0.0:49153->443/tcp   static-site
+
+C:\Users\Alfa>docker port static-site
+443/tcp -> 0.0.0.0:49153
+80/tcp -> 0.0.0.0:49154
+
+C:\Users\Alfa>docker run --name static-site-2 -e AUTHOR="Asset Makeyev" -d -p 8888:80 dockersamples/static-site
+a8ecaf777d67ce258174d975be7ba5ceaa9469cb29a4d54fe0049fe2ddf138d9
+
+C:\Users\Alfa>docker stop static-site
+static-site
+
+C:\Users\Alfa>docker rm static-site
+static-site
+
+C:\Users\Alfa>docker rm -f static-site-2
+static-site-2
+
+C:\Users\Alfa>docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+
+C:\Users\Alfa>docker images
+REPOSITORY                  TAG       IMAGE ID       CREATED        SIZE
+alpine                      latest    0ac33e5f5afa   4 weeks ago    5.57MB
+assetmku/ex4                latest    947011047115   5 weeks ago    139MB
+<none>                      <none>    bce7b41a05cd   5 weeks ago    170MB
+asset/ping                  latest    eceff66c48d9   5 weeks ago    170MB
+httpd                       2.4       b9bd7e513e0f   6 weeks ago    144MB
+postgres                    latest    5cd1494671e9   6 weeks ago    376MB
+hello-world                 latest    feb5d9fea6a5   7 months ago   13.3kB
+ubuntu                      16.04     b6f507652425   8 months ago   135MB
+dockersamples/static-site   latest    f589ccde7957   6 years ago    191MB
+
+C:\Users\Alfa>docker pull ubuntu:12.04
+12.04: Pulling from library/ubuntu
+d8868e50ac4c: Pull complete
+83251ac64627: Pull complete
+589bba2f1b36: Pull complete
+d62ecaceda39: Pull complete
+6d93b41cfc6b: Pull complete
+Digest: sha256:18305429afa14ea462f810146ba44d4363ae76e4c8dfc38288cf73aa07485005
+Status: Downloaded newer image for ubuntu:12.04
+docker.io/library/ubuntu:12.04
+Microsoft Windows [Version 10.0.19043.1645]
+(c) Корпорация Майкрософт (Microsoft Corporation). Все права защищены.
+
+
+
+C:\Users\Alfa\Desktop\Home works\Software Architecture\assigment#2\flask-app>docker build -t assetmku/myfirstapp .
+[+] Building 20.4s (13/13) FINISHED
+ => [internal] load build definition from Dockerfile                                                                                 0.0s
+ => => transferring dockerfile: 359B                                                                                                 0.0s
+ => [internal] load .dockerignore                                                                                                    0.0s
+ => => transferring context: 2B                                                                                                      0.0s
+ => [internal] load metadata for docker.io/library/alpine:3.5                                                                        4.2s
+ => [auth] library/alpine:pull token for registry-1.docker.io                                                                        0.0s
+ => [1/7] FROM docker.io/library/alpine:3.5@sha256:66952b313e51c3bd1987d7c4ddf5dba9bc0fb6e524eed2448fa660246b3e76ec                  1.2s
+ => => resolve docker.io/library/alpine:3.5@sha256:66952b313e51c3bd1987d7c4ddf5dba9bc0fb6e524eed2448fa660246b3e76ec                  0.0s
+ => => sha256:66952b313e51c3bd1987d7c4ddf5dba9bc0fb6e524eed2448fa660246b3e76ec 433B / 433B                                           0.0s
+ => => sha256:f7d2b5725685826823bc6b154c0de02832e5e6daf7dc25a00ab00f1158fabfc8 528B / 528B                                           0.0s
+ => => sha256:f80194ae2e0ccf0f098baa6b981396dfbffb16e6476164af72158577a7de2dd9 1.51kB / 1.51kB                                       0.0s
+ => => sha256:8cae0e1ac61cead281f41115cc0ebd39117f7e54dffc8fd5e05a7590dca3cd4e 1.97MB / 1.97MB                                       0.9s
+ => => extracting sha256:8cae0e1ac61cead281f41115cc0ebd39117f7e54dffc8fd5e05a7590dca3cd4e                                            0.3s
+ => [internal] load build context                                                                                                    0.0s
+ => => transferring context: 2.68kB                                                                                                  0.0s
+ => [2/7] RUN apk add --update py2-pip                                                                                               4.7s
+ => [3/7] RUN pip install --upgrade pip                                                                                              4.4s
+ => [4/7] COPY requirements.txt /usr/src/app/                                                                                        0.0s
+ => [5/7] RUN pip install --no-cache-dir -r /usr/src/app/requirements.txt                                                            5.1s
+ => [6/7] COPY app.py /usr/src/app/                                                                                                  0.0s
+ => [7/7] COPY templates/index.html /usr/src/app/templates/                                                                          0.0s
+ => exporting to image                                                                                                               0.6s
+ => => exporting layers                                                                                                              0.6s
+ => => writing image sha256:e5d43a912498063a13cf092d585c61ff30ef74bd47649a074c5fb4896a5003ea                                         0.0s
+ => => naming to docker.io/assetmku/myfirstapp                                                                                       0.0s
+
+Use 'docker scan' to run Snyk tests against images to find vulnerabilities and learn how to fix them
+
+C:\Users\Alfa\Desktop\Home works\Software Architecture\assigment#2\flask-app>docker run -p 8888:5000 --name myfirstapp assetmku/myfirstapp
+ * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+172.17.0.1 - - [03/May/2022 12:39:33] "GET / HTTP/1.1" 200 -
+172.17.0.1 - - [03/May/2022 12:41:16] "GET / HTTP/1.1" 200 -
+172.17.0.1 - - [03/May/2022 12:41:17] "GET / HTTP/1.1" 200 -
+172.17.0.1 - - [03/May/2022 12:41:18] "GET / HTTP/1.1" 200 -
+172.17.0.1 - - [03/May/2022 12:41:19] "GET / HTTP/1.1" 200 -
+172.17.0.1 - - [03/May/2022 12:42:01] "GET / HTTP/1.1" 200 -
+172.17.0.1 - - [03/May/2022 12:42:03] "GET / HTTP/1.1" 200 -
+
+
+Microsoft Windows [Version 10.0.19043.1645]
+(c) Корпорация Майкрософт (Microsoft Corporation). Все права защищены.
+
+C:\Users\Alfa\Desktop\Home works\Software Architecture\assigment#2>docker login
+Authenticating with existing credentials...
+Login Succeeded
+
+Logging in with your password grants your terminal complete access to your account.
+For better security, log in with a limited-privilege personal access token. Learn more at https://docs.docker.com/go/access-tokens/
+
+C:\Users\Alfa\Desktop\Home works\Software Architecture\assigment#2>docker push assetmku/myfirstapp
+Using default tag: latest
+The push refers to repository [docker.io/assetmku/myfirstapp]
+8c3530f4d5f2: Pushed
+41283fad8083: Pushed
+e752ed1f34da: Pushed
+d2475579fa76: Pushed
+fcab9876257f: Pushed
+f97bf6f80c99: Pushed
+f566c57e6f2d: Mounted from library/alpine
+latest: digest: sha256:63d2b7435e590bc378b31246aa31d71255fece39f21b909580b60e5cb02526dc size: 1782
+
+C:\Users\Alfa\Desktop\Home works\Software Architecture\assigment#2>docker stop myfirstapp
+myfirstapp
+
+C:\Users\Alfa\Desktop\Home works\Software Architecture\assigment#2>docker rm myfirstapp
+myfirstapp
+
+C:\Users\Alfa\Desktop\Home works\Software Architecture\assigment#2>
